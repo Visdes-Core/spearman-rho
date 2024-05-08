@@ -4,7 +4,7 @@
   "description": "**MatchMajor** adalah aplikasi edukasi kreatif yang membantu calon mahasiswa memilih jurusan yang tepat. Aplikasi ini menghubungkan pelajar yang ingin mencari tahu tentang jurusan dengan mahasiswa yang bersedia berbagi pengalaman mereka di jurusan tersebut.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "nodemon --exec ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
