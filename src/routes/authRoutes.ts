@@ -1,7 +1,5 @@
-const express = require("express");
-const { loginService, signupService } = require("../services/authServices");
-
-const router = express.Router();
+import { loginService, signupService } from "../services/authServices";
+import { router } from "../router";
 
 router.post("/login", loginService);
 router.post("/signup", signupService);
