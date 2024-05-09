@@ -22,12 +22,12 @@ const roleMahasiswa = async (req : Request, res : Response) => {
 
     try {
 
-    const { nama, asal_universitas, angkatan, jurusan, minat, organisasi, pencapaian } = req.body;
-    const userId = res.locals.userId
+        const { nama, asal_universitas, angkatan, jurusan, minat, organisasi, pencapaian } = req.body;
+        const userId = res.locals.userId
 
-    await createMahasiswa(userId, nama, asal_universitas, angkatan, jurusan, minat, organisasi, pencapaian );
+        await createMahasiswa(userId, nama, asal_universitas, angkatan, jurusan, minat, organisasi, pencapaian );
 
-    res.status(200).send({message:"Adding mahasiswa failed"})
+        res.status(200).send({message:"New mahasiswa succesfully added!"})
 
     } catch (e){
         console.error('Adding mahasiswa failed:', e.message);
