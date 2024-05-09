@@ -15,21 +15,22 @@ schema
 
 const signupService = async (req : Request, res : Response) => {
     try {
-        const {username, email, password, reenter_password} = req.body;
+
+        const {username, email, password, confirm_password} = req.body;
 
         if (!validateEmail(email)){
-            res.status(400).send({message: "Invalid Email Format!"})
+            res.status(400).send({message: "Invalid email format!"})
             return;
         }
 
-        if (password !== reenter_password) {
-            res.status(400).send({message: "Password Dont Match!"})
+        if (password !== confirm_password) {
+            res.status(400).send({message: "Password dont match!"})
             return;
         }
         
         if (!schema.validate(password)) {
             res.status(400).json({
-                error: 'Invalid Password',
+                error: 'Invalid password criteria',
                 details: schema.validate(password, {details: true})
             });
             return;
@@ -39,28 +40,30 @@ const signupService = async (req : Request, res : Response) => {
 
         if (error) {throw error}
     
-        res.status(200).send({message: "User Succesfully Created!"})
+        res.status(200).send({ message: "User succesfully created!" })
 
     } catch (e){
-        res.status(400).send({message: "User Registration Failed!: " + e})
+        console.error('User registration failed:', e.message);
+        return res.status(401).json({ error: 'User registration failed:'+ e.message });
     }
 }
 
 const loginService = async (req : Request, res : Response) => {
     try {
-        const { email, password } = req.body;
 
+        const { email, password } = req.body;
         const { data, error } = await login(email, password)
     
         if (error) {throw error}
 
         const userId = data.user.id;
         const token = generateJWT(userId)
-    
-        res.status(200).send({message:"Logged in Succesfully", token: token})
+            
+        res.status(200).send({message: "Logged in succesfully", token: token})
 
     } catch (e){
-        res.status(400).send({message: "Login Failed!: " + e})
+        console.error('Login failed:', e.message);
+        return res.status(401).json({ error: 'Login failed:' + e.message });
     }
 
 }
@@ -83,4 +86,4 @@ const generateJWT = (userId: string) => {
     return jwtToken;
 }
 
-module.exports = { loginService, signupService };
+export { loginService, signupService };
