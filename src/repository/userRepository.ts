@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import supabase from '../scripts/db';
+import supabase from './scripts/db';
 
 const findById = async (userId : UUID) => {
     const userData = await supabase
@@ -15,7 +15,7 @@ const findById = async (userId : UUID) => {
         `)
         .eq('id', userId);
 
-    return userData.data[0] || null;
+    return userData.data[0];
 };
 
 const findAll = async () => {

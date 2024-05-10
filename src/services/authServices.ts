@@ -59,7 +59,7 @@ const loginService = async (req : Request, res : Response) => {
         const userId = data.user.id;
         const token = generateJWT(userId)
             
-        res.status(200).send({message: "Logged in succesfully", token: token})
+        res.status(200).send({message:"Logged in succesfully", token: token})
 
     } catch (e){
         console.error('Login failed:', e.message);

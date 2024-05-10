@@ -1,4 +1,4 @@
-import supabase from '../scripts/db'
+import supabase from './scripts/db'
 
 const login = (email : string, password : string) => {
     return supabase.auth.signInWithPassword({

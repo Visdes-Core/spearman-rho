@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import supabase from '../scripts/db'
+import supabase from './scripts/db'
 
 interface Organisasi {
     nama_organisasi : string,
@@ -104,17 +104,17 @@ const createMahasiswa = async (userId : UUID, nama : string, asal_universitas : 
 
 const roleCheck = async (userId : UUID) => {
 
-    const siswa = supabase
+    const { data : siswaData }= await supabase
         .from ('siswa')
         .select ('id')
         .eq('id', userId) 
 
-    const mahasiswa = supabase
+    const { data : mahasiswaData } = await supabase
         .from ('mahasiswa')
         .select ('id')
         .eq('id', userId) 
 
-    return siswa || mahasiswa
+    return { siswaData, mahasiswaData }
 }
 
 export { createSiswa, createMahasiswa, roleCheck };
