@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import supabase from '../db'
+import supabase from '../scripts/db'
 
 interface Organisasi {
     nama_organisasi : string,

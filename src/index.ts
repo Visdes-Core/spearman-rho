@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/role", require("./routes/roleRoutes"));
+app.use("/user", require("./routes/userRoutes"));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);

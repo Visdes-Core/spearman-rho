@@ -1,5 +1,5 @@
 import { loginService, signupService } from "../services/authServices";
-import { router } from "../router";
+import { router } from "../scripts/router";
 
 router.post("/login", loginService);
 router.post("/signup", signupService);
