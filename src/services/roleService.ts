@@ -43,4 +43,13 @@ const roleMahasiswa = async (req : Request, res : Response) => {
         res.status(401).send({error: "Adding mahasiswa failed: " + e.message})
     }
 }
-export {roleSiswa, roleMahasiswa}
+
+const roleCheck = async (req : Request, res : Response) => {
+
+    if (res.locals.role != undefined) {
+        res.status(200).send({role: res.locals.role})
+        return;
+    }
+    res.status(200).send({role: 'unenrolled'})    
+}
+export {roleSiswa, roleMahasiswa, roleCheck}
