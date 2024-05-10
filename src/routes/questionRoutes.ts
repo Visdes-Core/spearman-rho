@@ -6,6 +6,6 @@ import { getQuestions, createQuestion, deleteQuestion, upVoteQuestion } from "..
 router.post("/create", verifyToken, verifyRole, createQuestion);
 router.get("/:id", verifyToken, getQuestions);
 router.delete("/delete/:id", verifyToken, deleteQuestion);
-router.patch("/upvote/:id", verifyToken, upVoteQuestion);
+router.get("/upvote/:id", verifyToken, upVoteQuestion);
 
 module.exports = router;
