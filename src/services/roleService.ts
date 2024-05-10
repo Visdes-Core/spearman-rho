@@ -4,6 +4,11 @@ import { createSiswa, createMahasiswa } from '../repository/roleRepository';
 const roleSiswa = async (req : Request, res : Response) => {
 
     try {
+
+        if (res.locals.role != undefined) {
+            res.status(401).send({ message: "You already have role" })
+        }
+
         const { nama, kelas, preferensi_jurusan } = req.body;
         const userId = res.locals.userId
 
@@ -21,6 +26,10 @@ const roleSiswa = async (req : Request, res : Response) => {
 const roleMahasiswa = async (req : Request, res : Response) => {
 
     try {
+
+        if (res.locals.role != undefined) {
+            res.status(401).send({ message: "You already have role" })
+        }
 
         const { nama, asal_universitas, angkatan, jurusan, minat, organisasi, pencapaian } = req.body;
         const userId = res.locals.userId
